@@ -1,8 +1,11 @@
 from sqlalchemy import Column, Integer, String
-from utils import Base
+from utils.db import Base
 
-class Item(Base):
-    __tablename__ = "items"
+class User(Base):
+    __tablename__ = "users"
 
     id    = Column(Integer, primary_key=True, index=True)
-    name  = Column(String, nullable=False)
+    firstName  = Column(String, nullable=False)
+    lastName  = Column(String, nullable=False)
+    email = Column(String, nullable=False,unique=True)
+    password =  Column(String, nullable=False)
