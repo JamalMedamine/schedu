@@ -6,13 +6,13 @@ COPY ./requirements.txt .
 
 RUN pip install --no-cache-dir -r requirements.txt
 
+RUN apk add --no-cache postgresql-client
+
 COPY ./src .
 
 COPY entrypoint.sh /app/entrypoint.sh
 
 RUN chmod +x /app/entrypoint.sh
-
-RUN apk add --no-cache postgresql-client
 
 EXPOSE 8000
 

@@ -1,8 +1,7 @@
 from passlib.context import CryptContext
 from fastapi import Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer
-from utils.jwt import verify_token
-from utils.redis import is_token_blacklisted
+from utils.jwt import verify_token , is_token_blacklisted
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/auth/login")
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
