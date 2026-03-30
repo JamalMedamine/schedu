@@ -8,6 +8,11 @@ from alembic import context
 
 from utils.db import Base
 from models.user import User  # import all models
+from dotenv import load_dotenv
+import os
+load_dotenv()
+
+DATABASE_URL = os.getenv("DATABASE_URL")
 
 config = context.config
 fileConfig(config.config_file_name)
@@ -16,7 +21,7 @@ target_metadata = Base.metadata
 
 
 def run_migrations_offline():
-    url = config.get_main_option("sqlalchemy.url")
+    url = DATABASE_URL
     context.configure(
         url=url,
         target_metadata=target_metadata,
@@ -36,7 +41,7 @@ def do_run_migrations(connection: Connection):
 
 async def run_migrations_online():
     connectable = create_async_engine(
-        config.get_main_option("sqlalchemy.url"),
+        DATABASE_URL,
         poolclass=pool.NullPool,
     )
 
